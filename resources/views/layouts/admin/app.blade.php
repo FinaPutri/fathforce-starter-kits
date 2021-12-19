@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Dashboard Starter Kits Pro</title>
+  <title>Admin - {{ env('APP_NAME') }}</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -15,11 +15,6 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset ('assets/admin/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset ('assets/admin/css/components.css') }}">
-
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-  
-
-
 
   <!-- Datatables -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
@@ -55,8 +50,6 @@
   <!-- Template JS File -->
   <script src="{{ asset ('assets/admin/js/scripts.js') }}"></script>
   <script src="{{ asset ('assets/admin/js/custom.js') }}"></script>
-
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 
   <!-- Datatables -->
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
