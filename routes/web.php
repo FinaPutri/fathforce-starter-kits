@@ -43,8 +43,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 
 // fina
 Route::resource('article-posts', PostController::class);
-Route::get('/article/{slug}', [ArticleController::class, 'show']);
-Route::get('/article', [ArticleController::class, 'index'])->name('article');
+Route::resource('article', ArticleController::class);
 
 // putri
 Route::resource('gallery', GaleryController::class);
