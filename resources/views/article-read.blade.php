@@ -42,7 +42,7 @@
                 <ul>
                   <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{$post->user->name}}</a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">{{ \Carbon\Carbon::parse($post->created_at)->diffForhumans() }}</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">{{$post->comments->where('child_id', '')->count().' comments';}}</a></li>
                 </ul>
               </div>
 
@@ -87,7 +87,7 @@
 
             <div class="blog-comments">
 
-              <h4 class="comments-count">8 Comments</h4>
+              <h4 class="comments-count">{{$post->comments->where('child_id', '')->count().' comments';}}</h4>
 
               @comments([
                 'model' => $post,

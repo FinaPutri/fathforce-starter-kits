@@ -42,14 +42,14 @@
                 <ul>
                   <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#"> {{ $item->user->name }}</a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">{{ \Carbon\Carbon::parse($item->created_at)->diffForhumans() }}</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">{{$item->comments->where('child_id', '')->count().' comments';}}</a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-folder"></i><a href="#"> {{ $item->categories->category_name }}</a></li>
                 </ul>
               </div>
 
               <div class="entry-content">
                 <p>
-                   {!! Str::words($item->content, 1,'....') !!}
+                   {!! Illuminate\Support\Str::words($item->content, 1,'....') !!}
                 </p>
                 <div class="read-more">
                   <a href="{{route('article.show',$item->id)}}">Read More</a>
