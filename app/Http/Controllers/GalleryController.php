@@ -11,8 +11,9 @@ class GalleryController extends Controller
     {
         $data = [
             'tittle' => 'List Gallery',
-            'galery' => Galery::orderBy('created_at','desc')->paginate(5),
+            'galleries' => Galery::orderBy('created_at', 'desc')->get(),
         ];
+
         return view('gallery', $data);
     }
 }

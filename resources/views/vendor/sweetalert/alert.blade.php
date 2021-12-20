@@ -2,7 +2,7 @@
     @if (config('sweetalert.animation.enable'))
         <link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
     @endif
-    <script src="{{ $cdn ?? asset('sweetalert/sweetalert.all.js') }}"></script>
+    <script src="{{ $cdn ?? asset('vendors/sweetalert/sweetalert.all.js') }}"></script>
     <script>
         const Toast = Swal.mixin({
             toast: true,
@@ -27,7 +27,7 @@
     @if (config('sweetalert.animation.enable'))
         <link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
     @endif
-    <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+    <script src="{{ $cdn ?? asset('vendors/sweetalert/sweetalert.all.js') }}"></script>
     <script>
         const Toast = Swal.mixin({
             toast: true,
