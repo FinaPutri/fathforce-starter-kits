@@ -48,13 +48,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'tittle' => 'required',
+            'content' => 'required',
+            'media' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+  
+        if ($image = $request->file('media')) {
+            $destinationPath = 'image/';
+            $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imgName);
+            $gambar = "$imgName";
+        }
+
         $post = new Post();
         $user_id = Auth()->user()->id;
 
         $post->id_user = $user_id;
         $post->tittle = $request->tittle;
         $post->content = $request->content;
-        $post->media = $request->media;
+        $post->media = $gambar;
         $post->id_cat = $request->category;
         $post->save();
         return redirect(route('article-posts.index'));
@@ -88,7 +101,7 @@ class PostController extends Controller
             'method' => 'PUT',
             'route' => route('article-posts.update', $id),
             'post' => Post::where('id',$id)->first(),
-            'cat' => Category::get()
+            'category' => Category::get()
         ];
         return view('admin.post.editor', $data);
     }
@@ -103,12 +116,26 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
+        $request->validate([
+            'tittle' => 'required',
+            'content' => 'required'
+        ]);
+  
+        if ($image = $request->file('media')) {
+            $destinationPath = 'image/';
+            $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imgName);
+            unlink("image/".$post->media);
+            $post->media = "$imgName";
+        }else{
+            unset($request->media);
+        }
+
         $user_id = Auth()->user()->id;
 
         $post->id_user = $user_id;
         $post->tittle = $request->tittle;
         $post->content = $request->content;
-        $post->media = $request->media;
         $post->id_cat = $request->category;
         $post->update();
         return redirect(route('article-posts.index'));
@@ -122,7 +149,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $destroy = Post::where('id',$id);
+        $destroy = Post::find($id);
+        unlink("image/".$destroy->media);
         $destroy->delete();
         return redirect(route('article-posts.index'));
     }

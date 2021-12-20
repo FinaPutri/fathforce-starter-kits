@@ -17,7 +17,7 @@
                     <h4>Article</h4>
                   </div>
                   <div class="card-body">
-                    27
+                    {{ $post }}
                   </div>
                 </div>
               </div>

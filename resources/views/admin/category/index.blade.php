@@ -8,8 +8,8 @@
           <a href="{{ $route }}" class="btn btn-primary">Add New</a>
         </div>
         <div class="section-header-breadcrumb">
-          <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-          <div class="breadcrumb-item"><a href="#">Category</a></div>
+          <div class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+          <div class="breadcrumb-item"><a href="{{ url('article-category') }}">Categoty</a></div>
           <div class="breadcrumb-item">All Category</div>
         </div>
       </div>
@@ -48,9 +48,9 @@
                           <td>{!! $category->description !!}</td>
                           <td>{{ $category->action }}
                             <div>
-                              <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" href="{{ route('category.edit',$category->id) }}" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                              <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" href="{{ route('article-category.edit',$category->id) }}" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
                               <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="" onclick="event.preventDefault(); $('#destroy-{{ $category->id }}').submit()" data-original-title="Delete"><i class="fas fa-trash"></i></a>
-                              <form id="destroy-{{ $category->id }}" action="{{ route('category.destroy',$category->id) }}" method="POST">
+                              <form id="destroy-{{ $category->id }}" action="{{ route('article-category.destroy',$category->id) }}" method="POST">
                                 @csrf 
                                 @method('DELETE')
                             </form>

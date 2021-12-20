@@ -17,7 +17,7 @@ class CategoryController extends Controller
         $data = [
             'tittle' => 'List category',
             'categories' => Category::latest()->get(),
-            'route' => route('category.create')
+            'route' => route('article-category.create')
         ];
         return view('admin.category.index', $data);
     }
@@ -32,7 +32,7 @@ class CategoryController extends Controller
         $data = [
             'tittle' => 'Create New',
             'method' => 'POST',
-            'route' => route('category.store')
+            'route' => route('article-category.store')
         ];
         return view('admin.category.editor', $data);
     }
@@ -50,7 +50,7 @@ class CategoryController extends Controller
         $category->category_name = $request->category_name;
         $category->description = $request->description;
         $category->save();
-        return redirect(route("category.index"));
+        return redirect(route('article-category.index'));
     }
 
     /**
@@ -79,7 +79,7 @@ class CategoryController extends Controller
         $data = [
             'tittle' => 'Edit',
             'method' => 'PUT',
-            'route' => route('category.update', $id),
+            'route' => route('article-category.update', $id),
             'category' => Category::where('id',$id)->first()
         ];
         return view('admin.category.editor', $data);
@@ -99,7 +99,7 @@ class CategoryController extends Controller
         $category->category_name = $request->category_name;
         $category->description = $request->description;
         $category->update();
-        return redirect(route("category.index"));
+        return redirect(route('article-category.index'));
     }
 
     /**
@@ -112,6 +112,6 @@ class CategoryController extends Controller
     {
         $destroy = Category::where('id',$id);
         $destroy->delete();
-        return redirect(route("category.index"));
+        return redirect(route('article-category.index'));
     }
 }

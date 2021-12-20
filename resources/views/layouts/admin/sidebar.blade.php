@@ -17,11 +17,11 @@
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Article</span></a>
                             <ul class="dropdown-menu" style="display: none;">
                               <li class="{{ request()->is('article-post*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('article-posts.index') }}">Post</a></li>
-                              <li class=""><a class="nav-link" href="/category">Category</a></li>
+                              <li class="{{ request()->is('article-category*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('article-category.index') }}">Category</a></li>
                             </ul>
                             </li>
                     </li>
-                    <li><a class="nav-link" href="/galery"><i class="fas fa-image"></i> <span>Gallery</span></a></li>
+                    <li class="{{ request()->is('galery*') ? 'active' : '' }}"><a class="nav-link" href="/galery"><i class="fas fa-image"></i> <span>Gallery</span></a></li>
                     <li><a class="nav-link" href="/user"><i class="fas fa-user"></i> <span>Manage User</span></a></li>
                     <li>
                             <li class="dropdown ">
