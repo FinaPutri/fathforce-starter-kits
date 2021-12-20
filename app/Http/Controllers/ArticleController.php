@@ -17,7 +17,7 @@ class ArticleController extends Controller
     {
         $data = [
             'tittle' => 'List Article',
-            'post' => Post::orderBy('created_at','desc')->paginate(5),
+            'post' => Post::latest()->paginate(5),
             'recentpost' => Post::latest()->limit(5)->get(),
             'category' => Category::get(),
         ];
