@@ -1,6 +1,7 @@
 @extends('layouts.admin.app')
-@section ('content')
-<div class="main-content" style="min-height: 514px;">
+
+@section('content')
+  <div class="main-content" style="min-height: 514px;">
     <section class="section">
       <div class="section-header">
         <h1>Gallery</h1>
@@ -20,7 +21,6 @@
         </p>
 
         <div class="row">
-            
         </div>
         <div class="row mt-4">
           <div class="col-12">
@@ -33,36 +33,39 @@
                 <div class="clearfix mb-3"></div>
 
                 <div class="table-responsive">
-                    <table id="table_id" class="display">
-                        <thead>
-                          <tr>
-                            <th>Tittle</th>
-                            <th>Image</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          @foreach ($galeries as $galery)
-                          <tr>
-                            <td>{{ $galery->tittle }}</td>
-                            <td><img src="/image/{{ $galery->media }}" width="100px"></td>
-                            {{-- <td>{{ $galery->media }}</td> --}}
-                            <td>{{ $galery->action }}
-                              <div>
-                                <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" href="{{ route('galery.edit',$galery->id) }}" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="" onclick="event.preventDefault(); $('#destroy-{{ $galery->id }}').submit()" data-original-title="Delete"><i class="fas fa-trash"></i></a>
-                              <form id="destroy-{{ $galery->id }}" action="{{ route('galery.destroy',$galery->id) }}" method="POST">
-                                @csrf 
+                  <table id="table_id" class="display">
+                    <thead>
+                      <tr>
+                        <th>Tittle</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($galeries as $galery)
+                        <tr>
+                          <td>{{ $galery->tittle }}</td>
+                          <td><img src="{{ asset('images/' . $galery->media) }}" width="100px"></td>
+                          <td>{{ $galery->action }}
+                            <div>
+                              <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" href="{{ route('galery.edit', $galery->id) }}"
+                                data-original-title="Edit"><i class="fas fa-pencil-alt"></i>
+                              </a>
+                              <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title=""
+                                onclick="event.preventDefault(); $('#destroy-{{ $galery->id }}').submit()" data-original-title="Delete">
+                                <i class="fas fa-trash"></i>
+                              </a>
+                              <form id="destroy-{{ $galery->id }}" action="{{ route('galery.destroy', $galery->id) }}" method="POST">
+                                @csrf
                                 @method('DELETE')
-                             </form>
-                              </div>
-                            </td>
-                            
-                          </tr>
-                          @endforeach
-                            
-                        </tbody>
-                    </table>
+                              </form>
+                            </div>
+                          </td>
+
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -74,10 +77,9 @@
 @endsection
 
 @section('script')
-    <script>
-      $(document).ready( function () {
+  <script>
+    $(document).ready(function() {
       $('#table_id').DataTable();
-      } );
-    </script>
+    });
+  </script>
 @endsection
-
