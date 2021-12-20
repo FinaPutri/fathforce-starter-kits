@@ -25,13 +25,13 @@ use App\Http\Controllers\ArticleController;
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/gallery', [GalleryController::class, 'index']);
+// Route::get('/gallery', [GaleryController::class, 'index']);
 
-Route::get('/gallery/{media}', [GalleryController::class, 'show']);
+// Route::get('/gallery/{media}', [GaleryController::class, 'show']);
 
-Route::get('/gallery',  function(){
-    return view('gallery');
-});
+// Route::get('/gallery',  function(){
+//     return view('gallery');
+// });
 
 //route galery dan category
 Route::resource('galery', GaleryController::class);
@@ -45,3 +45,8 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::resource('article-posts', PostController::class);
 Route::get('/article/{slug}', [ArticleController::class, 'show']);
 Route::get('/article', [ArticleController::class, 'index'])->name('article');
+
+// putri
+Route::resource('gallery', GaleryController::class);
+Route::get('/gallery/{media}', [GalleryController::class, 'show']);
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');

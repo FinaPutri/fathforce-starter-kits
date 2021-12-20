@@ -45,12 +45,24 @@ class GaleryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'tittle' => 'required',
+            'media' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($image = $request->file('media')) {
+            $destinationPath = 'image/';
+            $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imgName);
+            $gambar = "$imgName";
+        }
+        
         $galery = new Galery();
         $user_id = Auth()->user()->id;
 
         $galery->user_id = $user_id;
         $galery->tittle = $request->tittle;
-        $galery->media = $request->media;
+        $galery->media = $gambar;
         $galery->save();
         return redirect(route("galery.index"));
     }
@@ -97,6 +109,20 @@ class GaleryController extends Controller
     public function update(Request $request, $id)
     {
         $galery = Galery::find($id);
+        $request->validate([
+            'tittle' => 'required'
+        ]);
+  
+        if ($image = $request->file('media')) {
+            $destinationPath = 'image/';
+            $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imgName);
+            unlink("image/".$galery->media);
+            $galery->media = "$imgName";
+        }else{
+            unset($request->media);
+        }
+
         $user_id = Auth()->user()->id;
 
         $galery->user_id = $user_id;
@@ -115,6 +141,7 @@ class GaleryController extends Controller
     public function destroy($id)
     {
         $destroy = Galery::where('id',$id);
+        unlink("image/".$destroy->media);
         $destroy->delete();
         return redirect(route("galery.index"));
     }

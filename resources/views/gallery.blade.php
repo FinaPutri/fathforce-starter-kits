@@ -1,72 +1,95 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
-    <div class="row">
-        <div class="col-sm-0 main">
-            <div class="album-title">Photo Gallery</div>
+    <main id="main">
 
-            
-            <div class="album-description">Cras vitae augue varius, commodo lectus eget, tempor mi. Aliquam a
-                malesuada nisi. Fusce ac leo sed mauris finibus tempor. Quisque vitae auctor enim. Duis
-                imperdiet nulla eu malesuada convallis. Aenean consequat nec dui sed mattis.</div>
+    <!-- ======= Gallery Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
 
-            <div class="album-wrapper">
-                <!--Start album wrapper -->
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Gallery</h2>
+
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Gallery</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="galery" class="galery">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+
+            @foreach ($galery as $detail)
+            <Gallery class="entry">
+
+              <div class="entry-img">
+                <img src="{{'image/'.$detail->media}}" alt="" class="img-fluid">
+              </div>
+
+              <h2 class="entry-title">
+                <a href="#">{{ $detail->tittle }}</a>
+              </h2>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#"> {{ $detail->user->name }}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{ $detail['created_at'] }}</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">12 Comments</a></li>
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                   {!! Str::words($detail->content, 1,'....') !!}
+                </p>
                 
-                <div class="thumbnail-wrap" style="width:311px; height:311px;">
-                    <div class="thumbnail-frame" style="width:311px;">
-                        <a href="#"><img src="../../landing/assets/images/gallery/2.jpg" alt="alex-siale-95113-unsplash.jpg" width="311" height="311"></a>
-                        <p class="thumbnail-caption">Green mountains</p>
-                    </div>
-                </div>
-                
+              </div>
 
-                <div class="thumbnail-wrap" style="width:311px; height:311px;">
-                    <div class="thumbnail-frame" style="width:311px;">
-                        <a href="#"><img src="../../landing/assets/images/gallery/4.jpg" alt="johannes-ludwig-348591-unsplash.jpg" width="311" height="311"></a>
-                        <p class="thumbnail-caption">Lovely lake</p>
-                    </div>
-                </div>
+            </article><!-- End blog entry -->
+            @endforeach
 
-                <div class="thumbnail-wrap" style="width:311px; height:311px;">
-                    <div class="thumbnail-frame" style="width:311px;">
-                        <a href="#"><img src="../../landing/assets/images/gallery/6.jpg" alt="johny-goerend-402630-unsplash.jpg" width="311" height="311"></a>
-                        <p class="thumbnail-caption">Beautiful sunset</p>
-                    </div>
-                </div>
 
-                <div class="thumbnail-wrap" style="width:311px; height:311px;">
-                    <div class="thumbnail-frame" style="width:311px;">
-                        <a href="#"><img src="../../landing/assets/images/gallery/8.jpg" alt="luca-bravo-134059-unsplash.jpg" width="311" height="311"></a>
-                        <p class="thumbnail-caption">Foggy lake</p>
-                    </div>
-                </div>
-
-                <div class="thumbnail-wrap" style="width:311px; height:311px;">
-                    <div class="thumbnail-frame" style="width:311px;">
-                        <a href="#"><img src="../../landing/assets/images/gallery/10.jpg" alt="matthias-mullie-208395-unsplash.jpg" width="311" height="311"></a>
-                        <p class="thumbnail-caption">Amazing view</p>
-                    </div>
-                </div>
-
-                <div class="thumbnail-wrap" style="width:311px; height:311px;">
-                    <div class="thumbnail-frame" style="width:311px;">
-                        <a href="#"><img src="../../landing/assets/images/gallery/12.jpg" alt="paul-gilmore-94190-unsplash.jpg" width="311" height="311"></a>
-                        <p class="thumbnail-caption">Blue skies and clouds</p>
-                    </div>
-                </div>
-
+            <div class="blog-pagination">
+              <ul class="justify-content-center">
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+              </ul>
             </div>
-            <!--End album wrapper -->
 
-        </div>
+          </div><!-- End blog entries list -->
 
-        <div class="col-sm-4 sidebar">
-            <h4></h4>
+          <div class="col-lg-4">
+
+            <div class="sidebar">
+
+              <h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                <form action="">
+                  <input type="text">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+              
 
 
-        </div>
-    </div>
-</div>
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar --> 
+
+         </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
 @endsection

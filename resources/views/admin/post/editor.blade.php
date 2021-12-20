@@ -9,7 +9,7 @@
         <h1>{{ $tittle }} Article</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-          <div class="breadcrumb-item"><a href="{{ url('darticle-posts') }}">Article</a></div>
+          <div class="breadcrumb-item"><a href="{{ url('article-posts') }}">Article</a></div>
           <div class="breadcrumb-item active">{{ $tittle }} Article</div>
         </div>
       </div>

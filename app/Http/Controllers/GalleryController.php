@@ -15,11 +15,10 @@ class GalleryController extends Controller
     public function index()
     {
         $data = [
-            'tittle' => 'List gallery',
-            'gallery' => Galery::latest()->get(),
-            // 'route' => route('post.create')
+            'tittle' => 'List Gallery',
+            'galery' => Galery::orderBy('created_at','desc')->paginate(5),
         ];
-        return view('gallery', $data);
+        return view('galery', $data);
     }
 
     /**
@@ -49,13 +48,15 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($media)
+    public function show($id)
     {
         $data = [
-            'tittle' => 'List gallery',
-            'media' => Galery::where('tittle', $media)->first(),
+            'Tittle'=>'List Gallery',
+            'galery'=> Galery::where('content', $id)->first(),
         ];
-        return view('gallery', $data);
+
+        //dd($data);
+        return view('galery',$data);
     }
 
     /**

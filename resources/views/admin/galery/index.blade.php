@@ -8,8 +8,8 @@
           <a href="{{ $route }}" class="btn btn-primary">Add New</a>
         </div>
         <div class="section-header-breadcrumb">
-          <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-          <div class="breadcrumb-item"><a href="#">Gallery</a></div>
+          <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+          <div class="breadcrumb-item"><a href="{{ url('gallery') }}">Gallery</a></div>
           <div class="breadcrumb-item">All Gallery</div>
         </div>
       </div>
@@ -45,7 +45,8 @@
                           @foreach ($galeries as $galery)
                           <tr>
                             <td>{{ $galery->tittle }}</td>
-                            <td>{{ $galery->media }}</td>
+                            <td><img src="/image/{{ $galery->media }}" width="100px"></td>
+                            {{-- <td>{{ $galery->media }}</td> --}}
                             <td>{{ $galery->action }}
                               <div>
                                 <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" href="{{ route('galery.edit',$galery->id) }}" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>

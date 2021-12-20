@@ -4,12 +4,12 @@
     <section class="section">
       <div class="section-header">
         <div class="section-header-back">
-          <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+          <a href="{{ url('gallery') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
         </div>
         <h1>{{ $tittle }} Gallery</h1>
         <div class="section-header-breadcrumb">
-          <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-          <div class="breadcrumb-item"><a href="#">Gallery</a></div>
+          <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+          <div class="breadcrumb-item"><a href="{{ url('gallery') }}">Gallery</a></div>
           <div class="breadcrumb-item">{{ $tittle }} Gallery</div>
         </div>
       </div>
