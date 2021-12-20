@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
+use Laravelista\Comments\Commentable;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Commentable;
 
     protected $guarded = [
         'id',
