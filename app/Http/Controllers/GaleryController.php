@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class GaleryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data = [
@@ -22,11 +17,6 @@ class GaleryController extends Controller
         return view('admin.galery.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $data = [
@@ -37,42 +27,29 @@ class GaleryController extends Controller
         return view('admin.galery.editor', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'tittle' => 'required',
-        //     'media' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
+        $request->validate([
+            'tittle' => 'required',
+            'media' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
 
-        // if ($image = $request->file('media')) {
-        //     $destinationPath = 'image/';
-        //     $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
-        //     $image->move($destinationPath, $imgName);
-        //     $gambar = "$imgName";
-        // }
-        
+        if ($image = $request->file('media')) {
+            $destinationPath = 'images/';
+            $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imgName);
+        }
+
         $galery = new Galery();
         $user_id = Auth()->user()->id;
-
         $galery->user_id = $user_id;
         $galery->tittle = $request->tittle;
-        $galery->media = $request->media;
+        $galery->media = $imgName;
         $galery->save();
-        return redirect(route("galery.index"));
+
+        return redirect(route("galery.index"))->withSuccess('Success add galery');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($media)
     {
         $data = [
@@ -82,67 +59,49 @@ class GaleryController extends Controller
         return view('admin.galery.index', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = [
             'tittle' => 'Edit',
             'method' => 'PUT',
             'route' => route('galery.update', $id),
-            'galery' => Galery::where('id',$id)->first()
+            'galery' => Galery::where('id', $id)->first()
         ];
         return view('admin.galery.editor', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'tittle' => 'required'
+        ]);
+
         $galery = Galery::find($id);
-        // $request->validate([
-        //     'tittle' => 'required'
-        // ]);
-  
-        // if ($image = $request->file('media')) {
-        //     $destinationPath = 'image/';
-        //     $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
-        //     $image->move($destinationPath, $imgName);
-        //     unlink("image/".$galery->media);
-        //     $galery->media = "$imgName";
-        // }else{
-        //     unset($request->media);
-        // }
+        if ($image = $request->file('media')) {
+            $destinationPath = 'images/';
+            $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imgName);
+            unlink("images/" . $galery->media);
+            $galery->media = $imgName;
+        } else {
+            unset($request->media);
+        }
 
         $user_id = Auth()->user()->id;
 
         $galery->user_id = $user_id;
         $galery->tittle = $request->tittle;
-        $galery->media = $request->media;
         $galery->update();
-        return redirect(route("galery.index"));
+
+        return redirect(route("galery.index"))->withSuccess('Success update gallery');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $destroy = Galery::where('id',$id);
-        // unlink("image/".$destroy->media);
+        $destroy = Galery::find($id);
+        unlink("images/" . $destroy->media);
         $destroy->delete();
-        return redirect(route("galery.index"));
+
+        return redirect(route("galery.index"))->withSuccess('Success delete gallery');
     }
 }

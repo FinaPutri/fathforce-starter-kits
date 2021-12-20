@@ -19,34 +19,20 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('frontend.home');
-// });
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Auth::routes();
 
-// Route::get('/gallery', [GaleryController::class, 'index']);
-
-// Route::get('/gallery/{media}', [GaleryController::class, 'show']);
-
-// Route::get('/gallery',  function(){
-//     return view('gallery');
-// });
-
-//route galery dan category
-Route::resource('galery', GaleryController::class);
-
-Route::resource('article-category', CategoryController::class);
-
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
+// route galery dan category
+Route::resource('galery', GaleryController::class);
+Route::resource('article-category', CategoryController::class);
 
 // fina
 Route::resource('article-posts', PostController::class);
-Route::get('/article/{slug}', [ArticleController::class, 'show']);
 Route::get('/article', [ArticleController::class, 'index'])->name('article');
+Route::get('/article/{slug}', [ArticleController::class, 'show']);
 
 // putri
-Route::resource('gallery', GaleryController::class);
-Route::get('/gallery/{media}', [GalleryController::class, 'show']);
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
+Route::get('/gallery/{media}', [GalleryController::class, 'show']);

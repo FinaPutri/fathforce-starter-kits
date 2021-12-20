@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
-@section ('content')
-<div class="main-content">
+@section('content')
+  <div class="main-content">
     <section class="section">
       <div class="section-header">
         <div class="section-header-back">
@@ -26,22 +26,24 @@
               <div class="card-header">
                 <h4>Write Your Gallery</h4>
               </div>
-              <form action="{{ $route }}" method="POST">
+              <form action="{{ $route }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method($method)
-              <div class="card-body">
-                <div class="form-group row mb-4">
-                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tittle</label>
-                  <div class="col-sm-12 col-md-7">
-                    <input type="text" name="tittle" class="form-control" value="{{ @$galery->tittle }}">
+
+                <div class="card-body">
+                  <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tittle</label>
+                    <div class="col-sm-12 col-md-7">
+                      <input type="text" name="tittle" class="form-control" value="{{ @$galery->tittle }}">
+                    </div>
                   </div>
-                </div>
-                <div class="form-group row mb-4">
-                  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
-                  <div class="col-sm-12 col-md-7">
-                  <input type="file" name="media" class="form-control" value="{{ @$galery->media }}"></div>
-                </div>
-                {{-- <div class="form-group row mb-4">
+                  <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
+                    <div class="col-sm-12 col-md-7">
+                      <input type="file" name="media" class="form-control" value="{{ @$galery->media }}">
+                    </div>
+                  </div>
+                  {{-- <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Preview</label>
                     <div class="col-sm-12 col-md-7">
                       <div id="image-preview" class="image-preview"  style="background-image: none; background-size: cover; background-position: center center;">
@@ -51,14 +53,14 @@
                     </div>
                 </div> --}}
 
-                <div class="form-group row mb-4">
+                  <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                     <div class="col-sm-12 col-md-7">
                       <button class="btn btn-primary">Upload</button>
                     </div>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
             </div>
           </div>
         </div>
