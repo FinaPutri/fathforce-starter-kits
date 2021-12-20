@@ -55,7 +55,7 @@ class PostController extends Controller
         ]);
   
         if ($image = $request->file('media')) {
-            $destinationPath = 'image/';
+            $destinationPath = 'post-image/';
             $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imgName);
             $gambar = "$imgName";
@@ -122,10 +122,11 @@ class PostController extends Controller
         ]);
   
         if ($image = $request->file('media')) {
-            $destinationPath = 'image/';
+            $destinationPath = 'post-image/';
             $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $imgName);
-            unlink("image/".$post->media);
+            $locfile = "post-image/".$post->media;
+            if (file_exists($locfile)) {unlink($locfile);}
             $post->media = "$imgName";
         }else{
             unset($request->media);
@@ -150,7 +151,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $destroy = Post::find($id);
-        unlink("image/".$destroy->media);
+        $locfile = "post-image/".$destroy->media;
+        if (file_exists($locfile)) {unlink($locfile);}
         $destroy->delete();
         return redirect(route('article-posts.index'));
     }
