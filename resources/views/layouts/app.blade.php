@@ -20,8 +20,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css">
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('../../landing/assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('../../admin/assets/css/components.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/admin/assets/css/components.css') }}">
 
 
 </head>
