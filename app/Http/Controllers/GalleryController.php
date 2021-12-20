@@ -52,7 +52,7 @@ class GalleryController extends Controller
     {
         $data = [
             'Tittle'=>'List Gallery',
-            'galery'=> Galery::where('content', $id)->first(),
+            'galery'=> Galery::where('media', $id)->first(),
         ];
 
         //dd($data);

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.frontend.app')
 
 @section('content')
     <main id="main">
@@ -28,7 +28,7 @@
           <div class="col-lg-8 entries">
 
             @foreach ($galery as $detail)
-            <Gallery class="entry">
+            <gallery class="entry">
 
               <div class="entry-img">
                 <img src="{{'image/'.$detail->media}}" alt="" class="img-fluid">
@@ -42,7 +42,7 @@
                 <ul>
                   <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#"> {{ $detail->user->name }}</a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{ $detail['created_at'] }}</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">12 Comments</a></li>
+                  
                 </ul>
               </div>
 
@@ -53,7 +53,7 @@
                 
               </div>
 
-            </article><!-- End blog entry -->
+            </gallery><!-- End gallery entry -->
             @endforeach
 
 

@@ -52,7 +52,7 @@
         <ul>
           <li><a class="{{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
           <li><a class="{{ request()->is('article') ? 'active' : '' }}" href="{{ route('article') }}">Article</a></li>
-          <li><a href="/gallery">Gallery</a></li>
+          <li><a class="{{ request()->is('gallery') ? 'active' : '' }}" href="{{ route('gallery') }}">Gallery</a></li>
           <li><a href="#">About Us</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
