@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/frontend/img/favicon.png" rel="icon">
-  <link href="assets/frontend/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ asset('assets/frontend/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('assets/frontend/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
@@ -41,13 +41,13 @@
       <div class="logo">
         <h1 class="text-light"><a href={{ route('home') }}><span> {{ env('APP_NAME') }} </span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/frontend/img/logo.png" alt="" class="img-fluid"></a>-->
+        <!-- <a href="index.html"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="{{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
-          <li><a class="{{ request()->is('article') ? 'active' : '' }}" href="{{ route('article') }}">Article</a></li>
+          <li><a class="{{ request()->is('article') ? 'active' : '' }}" href="{{ route('article.index') }}">Article</a></li>
           <li><a class="{{ request()->is('gallery') ? 'active' : '' }}" href="{{ route('gallery') }}">Gallery</a></li>
           <li><a href="#">About Us</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
@@ -66,7 +66,7 @@
               <li><a href="#">Drop Down 3</a></li>
               <li><a href="#">Drop Down 4</a></li>
             </ul>
-            <li><a href="login">Login/Register</a></li>
+            <li><a href="{{route('login')}}">Login/Register</a></li>
           </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

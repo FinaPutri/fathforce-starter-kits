@@ -30,8 +30,7 @@ Route::resource('article-category', CategoryController::class);
 
 // fina
 Route::resource('article-posts', PostController::class);
-Route::get('/article', [ArticleController::class, 'index'])->name('article');
-Route::get('/article/{slug}', [ArticleController::class, 'show']);
+Route::resource('article', ArticleController::class);
 
 // putri
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');

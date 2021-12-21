@@ -17,7 +17,8 @@ class ArticleController extends Controller
     {
         $data = [
             'tittle' => 'List Article',
-            'post' => Post::orderBy('created_at','desc')->paginate(5),
+            'post' => Post::latest()->paginate(5),
+            'recentpost' => Post::latest()->limit(5)->get(),
             'category' => Category::get(),
         ];
         return view('article', $data);
@@ -54,11 +55,12 @@ class ArticleController extends Controller
     {
         $data = [
             'Tittle'=>'List Article',
-            'post'=> Post::where('content', $id)->first(),
+            'post'=> Post::where('id', $id)->first(),
+            'recentpost' => Post::latest()->limit(5)->get(),
+            'category' => Category::get(),
         ];
 
-        //dd($data);
-        return view('post',$data);
+        return view('article-read',$data);
     }
 
     /**

@@ -49,7 +49,7 @@
                           <td>{{ $post->tittle }}</td>
                           <td>{!! Str::words($post->content, 1,'....') !!}</td>
                           <td>{{ $post->categories->category_name }}</td>
-                          <td><img src="/image/{{ $post->media }}" width="100px"></td>
+                          <td><img src="{{ asset('post-image/'.$post->media) }}" width="100px"></td>
                           <td>
                             <div>
                               <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" href="{{ route('article-posts.edit',$post->id) }}" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
