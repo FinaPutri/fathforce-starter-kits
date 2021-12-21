@@ -50,7 +50,7 @@ class CategoryController extends Controller
         $category->category_name = $request->category_name;
         $category->description = $request->description;
         $category->save();
-        return redirect(route('article-category.index'));
+        return redirect(route('article-category.index'))->withSuccess('Success Add Category');
     }
 
     /**
@@ -99,7 +99,7 @@ class CategoryController extends Controller
         $category->category_name = $request->category_name;
         $category->description = $request->description;
         $category->update();
-        return redirect(route('article-category.index'));
+        return redirect(route('article-category.index'))->withSuccess('Success Update Category');
     }
 
     /**
@@ -112,6 +112,6 @@ class CategoryController extends Controller
     {
         $destroy = Category::where('id',$id);
         $destroy->delete();
-        return redirect(route('article-category.index'));
+        return redirect(route('article-category.index'))->withSuccess('Success Delete Category');
     }
 }
