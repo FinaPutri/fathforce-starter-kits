@@ -35,7 +35,13 @@
     </section>
   </main>
 
-  {!! $galleries->links('pagination::bootstrap-4') !!}
+  <div class="gallery-pagination">
+    <ul class="justify-content-center">
+        {!! $galleries->appends(Request::all())->links() !!}
+    </ul>
+  </div>
+
+  
 @endsection
 
 @push('script')
@@ -45,3 +51,5 @@
     })
   </script>
 @endpush
+
+
