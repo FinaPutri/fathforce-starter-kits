@@ -34,6 +34,8 @@
       </div>
     </section>
   </main>
+
+  {!! $galleries->links('pagination::bootstrap-4') !!}
 @endsection
 
 @push('script')
