@@ -11,7 +11,7 @@
           <h2>Article</h2>
 
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{ route('home') }}">Home</a></li>
             <li>Article</li>
           </ol>
         </div>
